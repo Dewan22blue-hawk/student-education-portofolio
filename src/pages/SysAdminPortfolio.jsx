@@ -41,23 +41,40 @@ const SysAdminPortfolio = () => {
     ];
 
     return (
-        <div className="min-h-screen py-20 px-4 md:px-8">
-            <div className="container-custom max-w-6xl mx-auto">
+        <div className="min-h-screen py-20 px-4 md:px-8 relative overflow-hidden">
+            {/* Massive Background Text */}
+            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full overflow-hidden pointer-events-none select-none flex justify-center z-0">
+                <motion.h1
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="text-[18vw] md:text-[22vw] leading-none font-black text-slate-200 dark:text-white/5 whitespace-nowrap"
+                >
+                    SYSADMIN
+                </motion.h1>
+            </div>
+
+            <div className="container-custom max-w-6xl mx-auto relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-center mb-16"
+                    className="text-center mb-16 md:mb-24 mt-8 md:mt-12"
                 >
-                    <div className="inline-block p-4 bg-secondary-500/10 rounded-full mb-6">
-                        <Server className="w-16 h-16 text-secondary-400" />
-                    </div>
-                    <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                        <span className="bg-gradient-to-r from-secondary-400 to-accent-400 bg-clip-text text-transparent">
-                            Network & SysAdmin
-                        </span>
-                    </h1>
-                    <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+                        className="inline-block p-4 bg-secondary-500/10 rounded-2xl mb-6 backdrop-blur-sm border border-secondary-500/20"
+                    >
+                        <Server className="w-12 h-12 md:w-16 md:h-16 text-secondary-500" />
+                    </motion.div>
+
+                    <h2 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 tracking-tight leading-tight uppercase">
+                        Network & <span className="bg-gradient-to-r from-secondary-400 to-accent-400 bg-clip-text text-transparent">SysAdmin</span>
+                    </h2>
+
+                    <p className="text-xl md:text-2xl text-slate-600 dark:text-gray-400 max-w-3xl mx-auto font-medium leading-relaxed">
                         Architecting robust network infrastructure and managing enterprise-level systems with security and reliability
                     </p>
                 </motion.div>

@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { User, Target, Award, Briefcase } from 'lucide-react';
 import { profileData } from '../data/cvData';
+import ScrollTextReveal from './ScrollTextReveal';
 
 /**
  * About Component
@@ -42,17 +42,38 @@ const About = () => {
             {/* Background effects */}
             <div className="absolute top-0 left-0 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl"></div>
 
+            {/* Massive Background Text - Consistent with Contact.jsx */}
+            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full overflow-hidden pointer-events-none select-none flex justify-center z-0">
+                <motion.h1
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="text-[20vw] md:text-[25vw] leading-none font-black text-slate-200 dark:text-white/5 whitespace-nowrap"
+                >
+                    ABOUT
+                </motion.h1>
+            </div>
+
             <div className="container-custom relative z-10" ref={ref}>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
+                    className="text-center mb-16 md:mb-24 mt-8 md:mt-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                        About <span className="gradient-text">Me</span>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ delay: 0.2 }}
+                        className="text-lg md:text-xl font-bold text-gray-400 mb-4 tracking-widest uppercase"
+                    >
+                        Biography
+                    </motion.p>
+                    <h2 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 tracking-tight leading-tight uppercase">
+                        About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 dark:from-primary-400 dark:via-purple-400 dark:to-pink-400">Me</span>
                     </h2>
-                    <p className="text-gray-400 text-lg">Get to know more about my background and expertise</p>
+                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">Get to know more about my background and expertise</p>
                 </motion.div>
 
                 <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
@@ -70,9 +91,13 @@ const About = () => {
                             <h3 className="text-2xl font-bold">Professional Summary</h3>
                         </div>
 
-                        <p className="text-gray-300 leading-relaxed mb-6">
-                            {profileData.summary}
-                        </p>
+                        {/* Updated with Text Reveal Animation */}
+                        <div className="mb-6 min-h-[120px]">
+                            <ScrollTextReveal
+                                content={profileData.summary}
+                                className="text-lg font-medium leading-relaxed"
+                            />
+                        </div>
 
                         {/* Quick Info */}
                         <div className="space-y-3">

@@ -7,18 +7,40 @@ import { Briefcase, ExternalLink } from 'lucide-react';
  */
 const Projects = () => {
     return (
-        <div className="min-h-screen py-20 px-4 md:px-8">
-            <div className="container-custom max-w-6xl mx-auto">
+        <div className="min-h-screen py-20 px-4 md:px-8 relative overflow-hidden">
+            {/* Massive Background Text */}
+            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full overflow-hidden pointer-events-none select-none flex justify-center z-0">
+                <motion.h1
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="text-[20vw] md:text-[25vw] leading-none font-black text-slate-200 dark:text-white/5 whitespace-nowrap"
+                >
+                    PROJECTS
+                </motion.h1>
+            </div>
+
+            <div className="container-custom max-w-6xl mx-auto relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-center mb-16"
+                    className="text-center mb-16 md:mb-24 mt-8 md:mt-12"
                 >
-                    <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                        <span className="gradient-text">My Projects</span>
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+                        className="inline-block p-4 bg-primary-500/10 rounded-2xl mb-6 backdrop-blur-sm border border-primary-500/20"
+                    >
+                        <Briefcase className="w-12 h-12 md:w-16 md:h-16 text-primary-500" />
+                    </motion.div>
+
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 tracking-tight leading-tight uppercase">
+                        My <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 dark:from-primary-400 dark:via-purple-400 dark:to-pink-400">Projects</span>
                     </h1>
-                    <p className="text-xl text-slate-600 dark:text-gray-400 max-w-3xl mx-auto">
+
+                    <p className="text-xl md:text-2xl text-slate-600 dark:text-gray-400 max-w-3xl mx-auto font-medium leading-relaxed">
                         A collection of my work, contributions, and achievements across various domains
                     </p>
                 </motion.div>

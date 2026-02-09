@@ -8,6 +8,13 @@ import { navItems } from '../data/cvData';
  * Features: Glassmorphism effect, sticky positioning, smooth scroll navigation,
  * mobile responsive hamburger menu, and scroll-triggered opacity changes
  */
+import DigitalClock from './DigitalClock';
+
+/**
+ * Navbar Component
+ * Features: Glassmorphism effect, sticky positioning, smooth scroll navigation,
+ * mobile responsive hamburger menu, and scroll-triggered opacity changes
+ */
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -78,8 +85,8 @@ const Navbar = () => {
                                     scrollToSection(item.href);
                                 }}
                                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${activeSection === item.href.substring(1)
-                                        ? 'bg-white/20 text-white'
-                                        : 'text-gray-300 hover:text-white hover:bg-white/10'
+                                    ? 'bg-white/20 text-white'
+                                    : 'text-gray-300 hover:text-white hover:bg-white/10'
                                     }`}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -87,6 +94,11 @@ const Navbar = () => {
                                 {item.name}
                             </motion.a>
                         ))}
+
+                        {/* Digital Clock Integration */}
+                        <div className="ml-4 pl-4 border-l border-white/10">
+                            <DigitalClock />
+                        </div>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -120,8 +132,8 @@ const Navbar = () => {
                                         scrollToSection(item.href);
                                     }}
                                     className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${activeSection === item.href.substring(1)
-                                            ? 'bg-white/20 text-white'
-                                            : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                                        ? 'bg-white/20 text-white'
+                                        : 'text-gray-300 hover:bg-white/10 hover:text-white'
                                         }`}
                                     initial={{ x: -20, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}

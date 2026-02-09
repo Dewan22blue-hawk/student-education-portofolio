@@ -1,24 +1,49 @@
 import { motion } from 'framer-motion';
-import { profileData, educationData, volunteeringData, experienceData } from '../data/cvData';
-import { Award, MapPin, Mail, Phone, Linkedin, Instagram } from 'lucide-react';
+import { profileData } from '../data/cvData';
+import { Award, MapPin, Mail, Phone, Linkedin } from 'lucide-react';
+import ScrollTextReveal from '../components/ScrollTextReveal';
+import Education from '../components/Education';
+import Experience from '../components/Experience';
 
 /**
  * About Page - Detailed biography and professional information
  */
 const About = () => {
     return (
-        <div className="min-h-screen py-20 px-4 md:px-8">
-            <div className="container-custom max-w-5xl mx-auto">
+        <div className="min-h-screen pt-24 md:pt-32 pb-12 relative overflow-hidden">
+            {/* Massive Background Text - Consistent with Contact.jsx */}
+            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full overflow-hidden pointer-events-none select-none flex justify-center z-0">
+                <motion.h1
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="text-[25vw] leading-none font-black text-slate-100 dark:text-white/5 whitespace-nowrap"
+                >
+                    ABOUT
+                </motion.h1>
+            </div>
+
+            {/* Profile Section */}
+            <div className="container-custom max-w-5xl mx-auto px-4 md:px-8 mb-20 relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-center mb-16"
+                    className="text-center mb-16 md:mb-24 mt-8"
                 >
-                    <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                        <span className="gradient-text">About Me</span>
-                    </h1>
-                    <p className="text-xl text-slate-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-lg md:text-xl font-bold text-gray-400 mb-4 tracking-widest uppercase"
+                    >
+                        Biography
+                    </motion.p>
+                    <h2 className="text-5xl md:text-8xl font-black mb-6 tracking-tight leading-tight uppercase">
+                        About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 dark:from-primary-400 dark:via-purple-400 dark:to-pink-400">Me</span>
+                    </h2>
+                    <p className="text-xl text-slate-600 dark:text-gray-400 max-w-3xl mx-auto font-medium">
                         {profileData.tagline}
                     </p>
                 </motion.div>
@@ -30,10 +55,11 @@ const About = () => {
                     transition={{ delay: 0.2 }}
                     className="glass-strong p-8 md:p-12 rounded-2xl mb-12"
                 >
-                    <h2 className="text-3xl font-bold mb-6">Professional Summary</h2>
-                    <p className="text-slate-700 dark:text-gray-300 leading-relaxed text-lg">
-                        {profileData.summary}
-                    </p>
+                    <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Professional Summary</h2>
+                    <ScrollTextReveal
+                        content={profileData.summary}
+                        className="text-lg font-medium leading-relaxed"
+                    />
                 </motion.section>
 
                 {/* Contact Info */}
@@ -48,41 +74,40 @@ const About = () => {
                             <Mail className="text-primary-400" size={20} />
                             <div>
                                 <p className="text-sm text-slate-500 dark:text-gray-400">Email</p>
-                                <p className="font-medium">{profileData.email}</p>
+                                <p className="font-medium text-gray-800 dark:text-gray-200">{profileData.email}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
                             <Phone className="text-primary-400" size={20} />
                             <div>
                                 <p className="text-sm text-slate-500 dark:text-gray-400">Phone</p>
-                                <p className="font-medium">{profileData.phone}</p>
+                                <p className="font-medium text-gray-800 dark:text-gray-200">{profileData.phone}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
                             <MapPin className="text-primary-400" size={20} />
                             <div>
                                 <p className="text-sm text-slate-500 dark:text-gray-400">Location</p>
-                                <p className="font-medium">{profileData.location}</p>
+                                <p className="font-medium text-gray-800 dark:text-gray-200">{profileData.location}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
                             <Linkedin className="text-primary-400" size={20} />
                             <div>
                                 <p className="text-sm text-slate-500 dark:text-gray-400">LinkedIn</p>
-                                <p className="font-medium">{profileData.linkedin}</p>
+                                <p className="font-medium text-gray-800 dark:text-gray-200">{profileData.linkedin}</p>
                             </div>
                         </div>
                     </div >
                 </motion.section >
 
                 {/* Core Competencies */}
-                < motion.section
+                <motion.section
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
-                    className="mb-16"
                 >
-                    <h2 className="text-3xl font-bold mb-8">Core Competencies</h2>
+                    <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-white">Core Competencies</h2>
                     <div className="grid md:grid-cols-2 gap-4">
                         {profileData.coreCompetencies.map((competency, index) => (
                             <motion.div
@@ -93,134 +118,19 @@ const About = () => {
                                 transition={{ delay: 0.5 + index * 0.1 }}
                             >
                                 <Award className="text-primary-400 flex-shrink-0 mt-1" size={20} />
-                                <p>{competency}</p>
+                                <p className="text-gray-700 dark:text-gray-300">{competency}</p>
                             </motion.div>
                         ))}
                     </div>
                 </motion.section >
+            </div>
 
-                {/* Education */}
-                < motion.section
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
-                    className="mb-16"
-                >
-                    <h2 className="text-3xl font-bold mb-8">Education</h2>
-                    <div className="space-y-6">
-                        {educationData.map((edu, index) => (
-                            <motion.div
-                                key={edu.id}
-                                className="glass-strong p-6 rounded-xl border-l-4 border-primary-500"
-                                initial={{ opacity: 0, x: -30 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.7 + index * 0.1 }}
-                            >
-                                <div className="flex flex-wrap justify-between items-start mb-3">
-                                    <div>
-                                        <h3 className="text-2xl font-bold mb-1">{edu.degree}</h3>
-                                        <p className="text-primary-400 font-medium">{edu.institution}</p>
-                                    </div>
-                                    <span className="text-sm text-gray-400 glass px-3 py-1 rounded-full">
-                                        {edu.period}
-                                    </span>
-                                </div>
-                                <p className="text-slate-600 dark:text-gray-400 mb-3">{edu.location}</p>
-                                <p className="text-slate-700 dark:text-gray-300 leading-relaxed mb-4">{edu.description}</p>
-                                {edu.achievements && edu.achievements.length > 0 && (
-                                    <div className="space-y-2">
-                                        {edu.achievements.map((achievement, i) => (
-                                            <div key={i} className="flex items-start gap-2">
-                                                <Award className="text-accent-400 flex-shrink-0 mt-1" size={16} />
-                                                <p className="text-sm text-accent-400">{achievement}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.section >
-
-                {/* Experience */}
-                < motion.section
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 }}
-                    className="mb-16"
-                >
-                    <h2 className="text-3xl font-bold mb-8">Professional Experience</h2>
-                    <div className="space-y-6">
-                        {experienceData.map((exp, index) => (
-                            <motion.div
-                                key={exp.id}
-                                className="glass-strong p-6 rounded-xl"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.9 + index * 0.1 }}
-                            >
-                                <div className="flex flex-wrap justify-between items-start mb-4">
-                                    <div>
-                                        <h3 className="text-xl font-bold mb-1">{exp.position}</h3>
-                                        <p className="text-primary-400">{exp.company}</p>
-                                        <p className="text-sm text-gray-400">{exp.location}</p>
-                                    </div>
-                                    <span className="text-sm text-gray-400 glass px-3 py-1 rounded-full">
-                                        {exp.period}
-                                    </span>
-                                </div>
-                                <ul className="space-y-2">
-                                    {exp.responsibilities.map((resp, i) => (
-                                        <li key={i} className="text-slate-700 dark:text-gray-300 flex items-start gap-2">
-                                            <span className="text-primary-400 mt-1.5">•</span>
-                                            <span>{resp}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.section >
-
-                {/* Volunteering */}
-                < motion.section
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 }}
-                >
-                    <h2 className="text-3xl font-bold mb-8">Volunteering & Activities</h2>
-                    <div className="space-y-6">
-                        {volunteeringData.map((vol, index) => (
-                            <motion.div
-                                key={vol.id}
-                                className="glass p-6 rounded-xl"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.1 + index * 0.1 }}
-                            >
-                                <div className="flex flex-wrap justify-between items-start mb-4">
-                                    <div>
-                                        <h3 className="text-xl font-bold mb-1">{vol.role}</h3>
-                                        <p className="text-secondary-400">{vol.organization}</p>
-                                    </div>
-                                    <span className="text-sm text-gray-400 glass px-3 py-1 rounded-full">
-                                        {vol.period}
-                                    </span>
-                                </div>
-                                <ul className="space-y-2">
-                                    {vol.activities.map((activity, i) => (
-                                        <li key={i} className="text-slate-700 dark:text-gray-300 flex items-start gap-2">
-                                            <span className="text-secondary-400 mt-1.5">•</span>
-                                            <span>{activity}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.section >
-            </div >
-        </div >
+            {/* Timelines Section - Full Width Components */}
+            <div className="space-y-0">
+                <Education />
+                <Experience />
+            </div>
+        </div>
     );
 };
 

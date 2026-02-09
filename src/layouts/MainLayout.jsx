@@ -1,7 +1,9 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { useLayoutEffect, useState, Suspense } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import BottomNavigation from '../components/BottomNavigation';
+import Preloader from '../components/Preloader';
 import gsap from 'gsap';
 
 /**
@@ -11,6 +13,7 @@ import gsap from 'gsap';
 const MainLayout = () => {
     const location = useLocation();
     const [displayLocation, setDisplayLocation] = useState(location);
+    const [isLoading, setIsLoading] = useState(true);
     const { isDark } = useTheme();
 
     useLayoutEffect(() => {
@@ -44,27 +47,38 @@ const MainLayout = () => {
 
     return (
         <div className={`min-h-screen transition-colors duration-300 ${isDark
-                ? 'bg-gray-950 text-white'
-                : 'bg-gray-50 text-gray-900'
+            ? 'bg-gray-950 text-white'
+            : 'bg-gray-50 text-gray-900'
             }`}>
-            {/* Page Content with Transition */}
-            <div className="page-transition pb-20 md:pb-0 md:pl-20">
-                <Suspense
-                    fallback={
-                        <div className="min-h-screen flex items-center justify-center">
-                            <div className="text-center">
-                                <div className="w-16 h-16 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                                <p className="text-gray-400">Loading...</p>
-                            </div>
-                        </div>
-                    }
-                >
-                    <Outlet context={{ location: displayLocation }} />
-                </Suspense>
-            </div>
 
-            {/* Persistent Bottom Navigation */}
-            <BottomNavigation />
+            <AnimatePresence mode="wait">
+                {isLoading && (
+                    <Preloader key="preloader" onComplete={() => setIsLoading(false)} />
+                )}
+            </AnimatePresence>
+
+            {!isLoading && (
+                <>
+                    {/* Page Content with Transition */}
+                    <div className="page-transition pb-20 md:pb-0 md:pl-20">
+                        <Suspense
+                            fallback={
+                                <div className="min-h-screen flex items-center justify-center">
+                                    <div className="text-center">
+                                        <div className="w-16 h-16 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                                        <p className="text-gray-400">Loading...</p>
+                                    </div>
+                                </div>
+                            }
+                        >
+                            <Outlet context={{ location: displayLocation }} />
+                        </Suspense>
+                    </div>
+
+                    {/* Persistent Bottom Navigation */}
+                    <BottomNavigation />
+                </>
+            )}
         </div>
     );
 };

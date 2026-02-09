@@ -35,7 +35,6 @@ const Hero = () => {
                 .from('.hero-name', { opacity: 0, y: 30, duration: 0.8 }, '-=0.5')
                 .from('.hero-typing', { opacity: 0, duration: 0.6 }, '-=0.3')
                 .from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
-                .from('.hero-cta', { opacity: 0, y: 20, stagger: 0.15, duration: 0.6 }, '-=0.4')
                 .from('.hero-social', {
                     opacity: 0,
                     scale: 0,
@@ -108,6 +107,19 @@ const Hero = () => {
                 }}
                 transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
             />
+
+            {/* Massive Background Text - Consistent with Contact.jsx */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full overflow-hidden pointer-events-none select-none flex justify-center z-0 opacity-50">
+                <motion.h1
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="text-[20vw] md:text-[25vw] leading-none font-black text-slate-200/50 dark:text-white/5 whitespace-nowrap"
+                >
+                    PORTFOLIO
+                </motion.h1>
+            </div>
+
             <motion.div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-3xl opacity-30"
                 style={{
@@ -133,7 +145,7 @@ const Hero = () => {
                     transition={{ type: "spring", stiffness: 400 }}
                 >
                     <span className="text-2xl">👋</span>
-                    <span className="text-sm font-bold bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    <span className="text-sm font-bold bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 bg-clip-text text-transparent uppercase tracking-widest">
                         Hi, I'm
                     </span>
                 </motion.div>
@@ -169,8 +181,8 @@ const Hero = () => {
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500/40 via-purple-500/40 to-pink-500/40 blur-3xl -z-10 animate-pulse"></div>
                 </motion.div>
 
-                {/* Name with Ultra Premium Gradient */}
-                <h1 className="hero-name text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight tracking-tight">
+                {/* Name with Ultra Premium Gradient - Uppercase & Black Font */}
+                <h1 className="hero-name text-5xl md:text-7xl lg:text-9xl font-black mb-8 leading-tight tracking-tighter uppercase">
                     <span className="bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 
                          dark:from-primary-400 dark:via-purple-400 dark:to-pink-400
                          bg-clip-text text-transparent
@@ -180,19 +192,19 @@ const Hero = () => {
                 </h1>
 
                 {/* Typing Animation with Glassmorphism Card */}
-                <div className="hero-typing h-20 md:h-24 mb-10 flex items-center justify-center">
+                <div className="hero-typing h-auto min-h-[5rem] md:min-h-[6rem] mb-10 flex items-center justify-center">
                     <motion.div
-                        className="inline-flex items-center gap-3 px-8 py-5 rounded-2xl 
+                        className="inline-flex items-center gap-3 px-6 py-4 md:px-8 md:py-5 rounded-2xl 
                        bg-white/80 dark:bg-white/5 backdrop-blur-2xl
                        border-2 border-white/60 dark:border-white/10
                        shadow-2xl shadow-black/10"
                         whileHover={{ scale: 1.02 }}
                     >
-                        <h2 className="text-xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent">
+                        <h2 className="text-xl md:text-3xl lg:text-4xl font-black uppercase tracking-tight bg-gradient-to-r from-slate-800 to-slate-600 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent text-center">
                             <span ref={textRef}></span>
                             <motion.span
                                 ref={cursorRef}
-                                className="inline-block w-0.5 h-7 md:h-10 bg-gradient-to-b from-primary-500 to-purple-500 ml-1"
+                                className="inline-block w-1 h-6 md:h-8 lg:h-10 bg-gradient-to-b from-primary-500 to-purple-500 ml-1 align-middle"
                                 animate={{ opacity: [1, 0, 1] }}
                                 transition={{ duration: 1, repeat: Infinity }}
                             />
@@ -201,13 +213,12 @@ const Hero = () => {
                 </div>
 
                 {/* Subtitle with Icons */}
-                <p className="hero-subtitle text-base md:text-lg text-slate-700 dark:text-gray-200 mb-14 max-w-2xl mx-auto font-medium leading-relaxed">
+                <p className="hero-subtitle text-lg md:text-xl text-slate-700 dark:text-gray-400 mb-14 max-w-3xl mx-auto font-bold tracking-widest uppercase leading-relaxed">
                     <span className="inline-flex items-center gap-2 flex-wrap justify-center">
                         <span className="inline-flex items-center gap-1.5">
-                            {/* <span className="text-primary-500 text-xl"></span> */}
                             <span>{profileData.subtitle}</span>
                         </span>
-                        <span className="text-primary-400 font-bold">•</span>
+                        <span className="text-primary-400 font-bold hidden md:inline">•</span>
                         <span>{profileData.tagline}</span>
                     </span>
                 </p>
@@ -223,6 +234,9 @@ const Hero = () => {
                      overflow-hidden
                      transition-all duration-300
                      flex items-center justify-center gap-3"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.5, duration: 0.5 }}
                         whileHover={{ scale: 1.05, y: -3, shadow: "0 25px 50px -12px rgba(99, 102, 241, 0.5)" }}
                         whileTap={{ scale: 0.97 }}
                     >
@@ -242,14 +256,17 @@ const Hero = () => {
                         href={cvFile}
                         download="Denny_Irawan_CV.pdf"
                         className="hero-cta group relative px-10 py-4 rounded-xl font-bold text-base
-                     bg-white/90 dark:bg-white/10 backdrop-blur-xl
+                     bg-white/90 dark:bg-white/20 backdrop-blur-xl
                      text-slate-800 dark:text-white
-                     border-2 border-primary-300/60 dark:border-primary-400/40
+                     border-2 border-primary-300/60 dark:border-primary-400/80
                      shadow-xl shadow-black/10
                      hover:border-primary-500 dark:hover:border-primary-400
                      transition-all duration-300
                      flex items-center justify-center gap-3
                      overflow-hidden"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.7, duration: 0.5 }}
                         whileHover={{ scale: 1.05, y: -3 }}
                         whileTap={{ scale: 0.97 }}
                     >
@@ -302,14 +319,17 @@ const Hero = () => {
 
             {/* Scroll Indicator with Animation */}
             <motion.div
-                className="z-20 absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+                className="z-20 absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer group"
                 animate={{ y: [0, 12, 0] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
             >
-                <span className="text-xs font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider">
+                <span className="text-xs font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors duration-300">
                     Scroll
                 </span>
-                <div className="p-2 rounded-full bg-white/80 dark:bg-white/10 backdrop-blur-md border border-white/60 dark:border-white/20">
+                <div className="p-2 rounded-full bg-white/80 dark:bg-white/10 backdrop-blur-md border border-white/60 dark:border-white/20 group-hover:border-primary-500/50 dark:group-hover:border-primary-400/50 group-hover:bg-white dark:group-hover:bg-white/20 transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-primary-500/20">
                     <ArrowDown size={20} className="text-primary-500 dark:text-primary-400" />
                 </div>
             </motion.div>

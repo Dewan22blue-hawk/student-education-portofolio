@@ -8,6 +8,7 @@ import Projects from './components/Projects'
 import Education from './components/Education'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+
 import './index.css'
 
 /**
@@ -39,6 +40,8 @@ function App() {
     <div className="min-h-screen bg-gray-950 text-white">
       {/* Navigation */}
       <Navbar className="mt-20" />
+
+
 
       {/* Main Content Sections */}
       <main>
