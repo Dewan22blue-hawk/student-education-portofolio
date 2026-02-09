@@ -1,10 +1,28 @@
 // Centralized CV Data Structure for Denny Irawan's Portfolio
 // Data extracted from CV images
 
+import {
+    SiPython,
+    SiReact,
+    SiNextdotjs,
+    SiNodedotjs,
+    SiTypescript,
+    SiLaravel,
+    SiTailwindcss,
+    SiPostgresql,
+    SiMongodb,
+    SiDocker,
+    SiGit,
+    // VscVscode,
+    SiLinux,
+    SiAmazonwebservices,
+    SiFirebase
+} from 'react-icons/si';
+
 export const profileData = {
     name: "Denny Irawan, A.Md.Kom.",
     title: "Tech-Savvy Student Affairs Professional",
-    subtitle: "Cum Laude Graduate | Internal Talent UBSI",
+    subtitle: "Cumlaude Graduate | Internal Talent UBSI",
     tagline: "Bridging Technology and Academic Excellence",
     email: "dennyirawan70204@gmail.com",
     phone: "+6282237545093",
@@ -289,4 +307,23 @@ export const navItems = [
     { name: "Projects", href: "#projects" },
     { name: "Education", href: "#education" },
     { name: "Contact", href: "#contact" }
+];
+
+// Tech Stack for Skills Ticker (Developer Portfolio) - WITH REACT ICONS
+export const techStackSkills = [
+    { name: 'Python', icon: SiPython, color: '#3776AB' },
+    { name: 'React', icon: SiReact, color: '#61DAFB' },
+    { name: 'Next.js', icon: SiNextdotjs, color: '#000000' },
+    { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
+    { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+    { name: 'Laravel', icon: SiLaravel, color: '#FF2D20' },
+    { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4' },
+    { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
+    { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
+    { name: 'Docker', icon: SiDocker, color: '#2496ED' },
+    { name: 'Git', icon: SiGit, color: '#F05032' },
+    // { name: 'VS Code', icon: VscVscode, color: '#007ACC' },
+    { name: 'Linux', icon: SiLinux, color: '#FCC624' },
+    { name: 'AWS', icon: SiAmazonwebservices, color: '#FF9900' },
+    { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
 ];

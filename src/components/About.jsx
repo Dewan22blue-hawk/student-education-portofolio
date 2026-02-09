@@ -16,7 +16,7 @@ const About = () => {
     const stats = [
         { icon: <Briefcase size={32} />, value: "3+", label: "Years Experience" },
         { icon: <Award size={32} />, value: "9+", label: "Certifications" },
-        { icon: <Target size={32} />, value: "3.86", label: "GPA (Cum Laude)" },
+        { icon: <Target size={32} />, value: "4.00", label: "GPA (Cum Laude)" },
         { icon: <User size={32} />, value: "50+", label: "Events Organized" }
     ];
 
